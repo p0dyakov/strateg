@@ -1,0 +1,27 @@
+# Секреты и ключи
+.env*
+*.key
+*.pem
+*.p12
+*.keystore
+id_rsa*
+id_ed25519*
+secrets/
+credentials*.json
+
+# Окружения и кэши
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+runs/
+.cache/
+
+# Временный lock и черновики состояния проекта
+*.lock
+state.json.tmp-*
+
+# Личные проекты пользователя
+projects/

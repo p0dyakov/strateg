@@ -1,0 +1,562 @@
+{
+  "version": 1,
+  "revision": 24,
+  "goal": "Выбрать следующий шаг для сценария Евы во время встреч",
+  "owner": "Руководитель продукта, учебная роль",
+  "stage": "followup",
+  "paused": false,
+  "next": "Вернуться к учебному решению 2026-12-18 или при новых данных",
+  "allow_hosts": [
+    "moscow.megafon.ru",
+    "trends.rbc.ru"
+  ],
+  "budget_usd": "0",
+  "sources": {
+    "S1": {
+      "id": "S1",
+      "kind": "open",
+      "locator": "Работаю секретарём",
+      "path": "materials/S1.md",
+      "sha256": "34fc92f74b125ac65c9dcfe6c45bcc48d52a94a859b488284481d68aae77762a",
+      "observed_on": "2026-11-18",
+      "status": "active",
+      "url": "https://moscow.megafon.ru/services/security/eva/"
+    },
+    "S2": {
+      "id": "S2",
+      "kind": "open",
+      "locator": "Как проходят исследования",
+      "path": "materials/S2.md",
+      "sha256": "ec380e8823c0ef1dc644d09aba3d13a6336a8ec51a2b5a91d963a3491347af71",
+      "observed_on": "2026-11-18",
+      "status": "active",
+      "url": "https://moscow.megafon.ru/help/info/popular/ux_research/"
+    },
+    "S3": {
+      "id": "S3",
+      "kind": "open",
+      "locator": "Что на практике",
+      "path": "materials/S3.md",
+      "sha256": "2521156789211c2931b7337faf5e5fdc98d72c09a2e471c466010d34442a1e40",
+      "observed_on": "2026-11-18",
+      "status": "active",
+      "url": "https://trends.rbc.ru/trends/innovation/cmrm/6123a67d9a79476d474f2d38"
+    },
+    "S4": {
+      "id": "S4",
+      "kind": "synthetic",
+      "locator": "Строки 1-5, полностью учебные агрегаты",
+      "path": "materials/S4.csv",
+      "sha256": "a44592749fd19f3c0572bd64bc3c530d3cbca75cc0dd23a4acd9355225e007bf",
+      "observed_on": "2026-11-18",
+      "status": "active"
+    }
+  },
+  "claims": {
+    "C1": {
+      "id": "C1",
+      "type": "fact",
+      "text": "Сайт Евы описывает приём звонка, когда человек занят",
+      "refs": [
+        "S1"
+      ],
+      "status": "active",
+      "locator": "Работаю секретарём"
+    },
+    "C2": {
+      "id": "C2",
+      "type": "fact",
+      "text": "МегаФон приглашает участников в UX-исследования",
+      "refs": [
+        "S2"
+      ],
+      "status": "active",
+      "locator": "Как проходят исследования"
+    },
+    "C3": {
+      "id": "C3",
+      "type": "fact",
+      "text": "В 2021 году Соболев описывал проверку прототипов с клиентами",
+      "refs": [
+        "S3"
+      ],
+      "status": "active",
+      "locator": "Что на практике"
+    },
+    "H1": {
+      "id": "H1",
+      "type": "hypothesis",
+      "text": "Возможен барьер понимания пользы секретаря во время встреч",
+      "refs": [
+        "C1"
+      ],
+      "status": "active"
+    },
+    "U1": {
+      "id": "U1",
+      "type": "unknown",
+      "text": "Неизвестны спрос, затраты, качество и фактическое использование сценария",
+      "refs": [],
+      "status": "active"
+    },
+    "H2": {
+      "id": "H2",
+      "type": "hypothesis",
+      "text": "Учебный пример иллюстрирует риск изменения состава когорт, не причину удержания Евы",
+      "refs": [
+        "S4"
+      ],
+      "status": "active"
+    }
+  },
+  "options": {
+    "O1": {
+      "id": "O1",
+      "approach": "status_quo",
+      "text": "Оставить как есть и наблюдать",
+      "refs": [
+        "C1",
+        "U1"
+      ],
+      "objections": [
+        "Можно упустить реальный барьер"
+      ],
+      "status": "active"
+    },
+    "O2": {
+      "id": "O2",
+      "approach": "communication",
+      "text": "Проверить объяснение существующего сценария",
+      "refs": [
+        "C1",
+        "H1",
+        "U1"
+      ],
+      "objections": [
+        "Если мешает качество или цена, текст не поможет"
+      ],
+      "status": "active"
+    },
+    "O3": {
+      "id": "O3",
+      "approach": "product",
+      "text": "Развивать отдельный режим для встреч",
+      "refs": [
+        "C1",
+        "H1",
+        "U1"
+      ],
+      "objections": [
+        "Не доказана недостаточность существующих настроек"
+      ],
+      "status": "active"
+    },
+    "O4": {
+      "id": "O4",
+      "approach": "close",
+      "text": "Закрыть новое направление встреч, не Еву целиком",
+      "refs": [
+        "C1",
+        "U1"
+      ],
+      "objections": [
+        "Можно отказаться от полезного сценария до проверки"
+      ],
+      "status": "active"
+    }
+  },
+  "decisions": {
+    "D1": {
+      "id": "D1",
+      "text": "Учебный выбор O2, не реальное согласование",
+      "refs": [
+        "O2",
+        "C1",
+        "H1",
+        "U1"
+      ],
+      "option": "O2",
+      "owner": "Руководитель продукта, учебная роль",
+      "due": "2026-12-18",
+      "metric": "Понимание условий, успешное использование, жалобы и цена проверки",
+      "trigger": "Проблема не подтверждена, условия изменились или проверка слишком дорога",
+      "approval": "example",
+      "status": "active"
+    }
+  },
+  "costs": [
+    {
+      "kind": "tool",
+      "usd": "0",
+      "minutes": null,
+      "note": "Локальный скрипт без платных вызовов"
+    },
+    {
+      "kind": "model",
+      "usd": null,
+      "minutes": null,
+      "note": "Цена подготовки стратегии в IDE не раскрыта, это не нулевой расход"
+    }
+  ],
+  "events": [
+    {
+      "key": "d-start",
+      "action": "checkpoint",
+      "payload": {
+        "stage": "research",
+        "next": "Проверить описание продукта"
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 1
+    },
+    {
+      "key": "d-S1",
+      "action": "source",
+      "payload": {
+        "id": "S1",
+        "kind": "open",
+        "file": "inbox/product.md",
+        "locator": "Работаю секретарём",
+        "sha256": "34fc92f74b125ac65c9dcfe6c45bcc48d52a94a859b488284481d68aae77762a",
+        "url": "https://moscow.megafon.ru/services/security/eva/"
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 2
+    },
+    {
+      "key": "d-S2",
+      "action": "source",
+      "payload": {
+        "id": "S2",
+        "kind": "open",
+        "file": "inbox/research.md",
+        "locator": "Как проходят исследования",
+        "sha256": "ec380e8823c0ef1dc644d09aba3d13a6336a8ec51a2b5a91d963a3491347af71",
+        "url": "https://moscow.megafon.ru/help/info/popular/ux_research/"
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 3
+    },
+    {
+      "key": "d-S3",
+      "action": "source",
+      "payload": {
+        "id": "S3",
+        "kind": "open",
+        "file": "inbox/factory.md",
+        "locator": "Что на практике",
+        "sha256": "2521156789211c2931b7337faf5e5fdc98d72c09a2e471c466010d34442a1e40",
+        "url": "https://trends.rbc.ru/trends/innovation/cmrm/6123a67d9a79476d474f2d38"
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 4
+    },
+    {
+      "key": "d-S4",
+      "action": "source",
+      "payload": {
+        "id": "S4",
+        "kind": "synthetic",
+        "file": "data.csv",
+        "locator": "Строки 1-5, полностью учебные агрегаты",
+        "sha256": "a44592749fd19f3c0572bd64bc3c530d3cbca75cc0dd23a4acd9355225e007bf"
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 5
+    },
+    {
+      "key": "d-C1",
+      "action": "record",
+      "payload": {
+        "kind": "claim",
+        "data": {
+          "id": "C1",
+          "type": "fact",
+          "text": "Сайт Евы описывает приём звонка, когда человек занят",
+          "refs": [
+            "S1"
+          ],
+          "locator": "Работаю секретарём"
+        }
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 6
+    },
+    {
+      "key": "d-C2",
+      "action": "record",
+      "payload": {
+        "kind": "claim",
+        "data": {
+          "id": "C2",
+          "type": "fact",
+          "text": "МегаФон приглашает участников в UX-исследования",
+          "refs": [
+            "S2"
+          ],
+          "locator": "Как проходят исследования"
+        }
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 7
+    },
+    {
+      "key": "d-C3",
+      "action": "record",
+      "payload": {
+        "kind": "claim",
+        "data": {
+          "id": "C3",
+          "type": "fact",
+          "text": "В 2021 году Соболев описывал проверку прототипов с клиентами",
+          "refs": [
+            "S3"
+          ],
+          "locator": "Что на практике"
+        }
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 8
+    },
+    {
+      "key": "d-H1",
+      "action": "record",
+      "payload": {
+        "kind": "claim",
+        "data": {
+          "id": "H1",
+          "type": "hypothesis",
+          "text": "Возможен барьер понимания пользы секретаря во время встреч",
+          "refs": [
+            "C1"
+          ]
+        }
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 9
+    },
+    {
+      "key": "d-U1",
+      "action": "record",
+      "payload": {
+        "kind": "claim",
+        "data": {
+          "id": "U1",
+          "type": "unknown",
+          "text": "Неизвестны спрос, затраты, качество и фактическое использование сценария",
+          "refs": []
+        }
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 10
+    },
+    {
+      "key": "d-H2",
+      "action": "record",
+      "payload": {
+        "kind": "claim",
+        "data": {
+          "id": "H2",
+          "type": "hypothesis",
+          "text": "Учебный пример иллюстрирует риск изменения состава когорт, не причину удержания Евы",
+          "refs": [
+            "S4"
+          ]
+        }
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 11
+    },
+    {
+      "key": "d-options",
+      "action": "checkpoint",
+      "payload": {
+        "stage": "options",
+        "next": "Сравнить разные пути"
+      },
+      "at": "2026-11-18T15:37:59+00:00",
+      "revision": 12
+    },
+    {
+      "key": "d-O1",
+      "action": "record",
+      "payload": {
+        "kind": "option",
+        "data": {
+          "id": "O1",
+          "approach": "status_quo",
+          "text": "Оставить как есть и наблюдать",
+          "refs": [
+            "C1",
+            "U1"
+          ],
+          "objections": [
+            "Можно упустить реальный барьер"
+          ]
+        }
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 13
+    },
+    {
+      "key": "d-O2",
+      "action": "record",
+      "payload": {
+        "kind": "option",
+        "data": {
+          "id": "O2",
+          "approach": "communication",
+          "text": "Проверить объяснение существующего сценария",
+          "refs": [
+            "C1",
+            "H1",
+            "U1"
+          ],
+          "objections": [
+            "Если мешает качество или цена, текст не поможет"
+          ]
+        }
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 14
+    },
+    {
+      "key": "d-O3",
+      "action": "record",
+      "payload": {
+        "kind": "option",
+        "data": {
+          "id": "O3",
+          "approach": "product",
+          "text": "Развивать отдельный режим для встреч",
+          "refs": [
+            "C1",
+            "H1",
+            "U1"
+          ],
+          "objections": [
+            "Не доказана недостаточность существующих настроек"
+          ]
+        }
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 15
+    },
+    {
+      "key": "d-O4",
+      "action": "record",
+      "payload": {
+        "kind": "option",
+        "data": {
+          "id": "O4",
+          "approach": "close",
+          "text": "Закрыть новое направление встреч, не Еву целиком",
+          "refs": [
+            "C1",
+            "U1"
+          ],
+          "objections": [
+            "Можно отказаться от полезного сценария до проверки"
+          ]
+        }
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 16
+    },
+    {
+      "key": "d-strategy",
+      "action": "checkpoint",
+      "payload": {
+        "stage": "strategy",
+        "next": "Проверить согласованность двух стратегий"
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 17
+    },
+    {
+      "key": "d-pause",
+      "action": "pause",
+      "payload": {
+        "next": "Сохранён проект стратегии, продолжить с учебной записью решения"
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 18
+    },
+    {
+      "key": "d-resume",
+      "action": "resume",
+      "payload": {},
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 19
+    },
+    {
+      "key": "d-choice",
+      "action": "checkpoint",
+      "payload": {
+        "stage": "decision",
+        "next": "Нужен выбор человека, в демо только учебный пример"
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 20
+    },
+    {
+      "key": "d-D1",
+      "action": "record",
+      "payload": {
+        "kind": "decision",
+        "data": {
+          "id": "D1",
+          "text": "Учебный выбор O2, не реальное согласование",
+          "refs": [
+            "O2",
+            "C1",
+            "H1",
+            "U1"
+          ],
+          "option": "O2",
+          "owner": "Руководитель продукта, учебная роль",
+          "due": "2026-12-18",
+          "metric": "Понимание условий, успешное использование, жалобы и цена проверки",
+          "trigger": "Проблема не подтверждена, условия изменились или проверка слишком дорога",
+          "approval": "example"
+        }
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 21
+    },
+    {
+      "key": "d-cost-tool",
+      "action": "cost",
+      "payload": {
+        "kind": "tool",
+        "usd": "0",
+        "minutes": null,
+        "note": "Локальный скрипт без платных вызовов"
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 22
+    },
+    {
+      "key": "d-cost-model",
+      "action": "cost",
+      "payload": {
+        "kind": "model",
+        "usd": null,
+        "minutes": null,
+        "note": "Цена подготовки стратегии в IDE не раскрыта, это не нулевой расход"
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 23
+    },
+    {
+      "key": "d-followup",
+      "action": "checkpoint",
+      "payload": {
+        "stage": "followup",
+        "next": "Вернуться к учебному решению 2026-12-18 или при новых данных"
+      },
+      "at": "2026-11-18T15:38:00+00:00",
+      "revision": 24
+    }
+  ]
+}

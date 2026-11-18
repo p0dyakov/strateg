@@ -1,0 +1,13 @@
+{
+  "name": "strateg-diagrams",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "diagrams": "node scripts/draw.mjs",
+    "diagrams:check": "node scripts/draw.mjs --check"
+  },
+  "devDependencies": {
+    "pele": "1.13.0"
+  }
+}

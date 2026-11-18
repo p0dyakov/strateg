@@ -1,0 +1,5 @@
+cohort,segment,eligible,retained,window_days,observed_days
+before,organic,100,60,7,14
+before,paid,100,20,7,14
+after,organic,100,65,7,14
+after,paid,300,75,7,14

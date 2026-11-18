@@ -1,0 +1,94 @@
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { render } from 'pele';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const assetsDir = join(root, 'assets');
+
+const FLOW_SOURCE = `stateDiagram-v2
+  [*] --> Brief
+  state "Вопрос решения" as Brief
+  state "Исследование" as Research
+  state "Варианты" as Options
+  state "Две стратегии" as Strategy
+  state "Выбор человека" as Decision
+  state "Сопровождение" as Followup
+  Brief --> Research
+  Research --> Options
+  Options --> Strategy
+  Strategy --> Decision
+  Decision --> Followup: Согласовано
+  Decision --> Research: Нужны основания
+  Followup --> Research: Новые данные`;
+
+const MEMORY_SOURCE = `sequenceDiagram
+  actor User as Руководитель
+  participant Agent as Агент в IDE
+  participant Tools as Локальные инструменты
+  participant Files as Файлы проекта
+  User->>Agent: Запрос или продолжение
+  Agent->>Files: Читает brief и state
+  Agent->>Tools: Выбирает проверку
+  Tools->>Files: Сохраняет источник и связи
+  Tools-->>Agent: Результат и ошибки
+  Agent->>Files: Основания и следующий шаг
+  Agent-->>User: Варианты и рекомендация
+  User->>Agent: Решение
+  Agent->>Files: Обязательства и пересмотр`;
+
+const DIAGRAMS = [
+  { file: 'flow.svg', idPrefix: 'flow-', source: FLOW_SOURCE, expect: 'state' },
+  { file: 'memory.svg', idPrefix: 'memory-', source: MEMORY_SOURCE, expect: 'sequence' },
+];
+
+function renderDiagram({ idPrefix, source }) {
+  const result = render(source, {
+    fontFamily: 'Georgia',
+    fontSize: 17,
+    idPrefix,
+    links: false,
+    images: false,
+  });
+  return result;
+}
+
+function withWhiteBackground(svg) {
+  const background =
+    '<rect x="0" y="0" width="100%" height="100%" fill="#ffffff"/>';
+  return svg.replace(/<svg([^>]*)>/, `<svg$1>${background}`);
+}
+
+const check = process.argv.includes('--check');
+let failed = false;
+
+for (const diagram of DIAGRAMS) {
+  const result = renderDiagram(diagram);
+  if (!result.type.toLowerCase().includes(diagram.expect)) {
+    console.error(`${diagram.file}: неожиданный тип диаграммы ${result.type}`);
+    failed = true;
+    continue;
+  }
+  const svg = withWhiteBackground(result.svg);
+  const target = join(assetsDir, diagram.file);
+  if (check) {
+    let existing;
+    try {
+      existing = readFileSync(target, 'utf8');
+    } catch {
+      console.error(`${diagram.file}: файл отсутствует — выполните npm run diagrams`);
+      failed = true;
+      continue;
+    }
+    if (existing !== svg) {
+      console.error(`${diagram.file}: содержимое устарело — выполните npm run diagrams`);
+      failed = true;
+    }
+  } else {
+    mkdirSync(assetsDir, { recursive: true });
+    writeFileSync(target, svg);
+    console.log(`${diagram.file}: записано (${result.type}, ${svg.length} байт)`);
+  }
+}
+
+process.exit(failed ? 1 : 0);
