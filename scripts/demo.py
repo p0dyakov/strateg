@@ -95,7 +95,7 @@ def seed(project, update=False):
         approval="example",
     )
     run(project, "cost", "--kind", "tool", "--usd", "0", "--note", "Локальный скрипт без платных вызовов", "--key", "d-cost-tool")
-    run(project, "cost", "--kind", "model", "--note", "Цена подготовки стратегии в IDE не раскрыта, это не нулевой расход", "--key", "d-cost-model")
+    run(project, "cost", "--kind", "model", "--note", "Цена подготовки стратегии в хосте не раскрыта, это не нулевой расход", "--key", "d-cost-model")
     run(project, "checkpoint", "--stage", "followup", "--next", "Вернуться к учебному решению 2026-12-18 или при новых данных", "--key", "d-followup")
     if update:
         run(project, "retract", "H1", "--reason", "Учебный сценарий пересмотра: допущение отозвано для новой проверки, реальных интервью не было", "--key", "d-update")
