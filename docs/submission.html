@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="contentType" content="Conceptual">
+<meta name="description" content="Описание прототипа «Стратег» для жюри: запуск, учебный сценарий и устройство проекта.">
+<title>Стратег</title>
+<style>
+@font-face {
+  font-family: Geist;
+  src: url("fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Geist;
+  src: url("fonts/Geist-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("fonts/GeistMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+@page { size: A4; margin: 16mm 17mm; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: #fff; }
+body { color: #16181d; font: 10pt/1.55 Geist, sans-serif; }
+.page + .page { break-before: page; }
+h1 { margin-bottom: 7mm; font-size: 24pt; font-weight: 700; letter-spacing: -0.02em; }
+h2 { margin: 6mm 0 2.5mm; font-size: 11.5pt; font-weight: 700; }
+p { margin-bottom: 3.5mm; }
+a { color: #2456d6; text-decoration: underline; text-underline-offset: 2px; }
+code { font: 0.92em "Geist Mono", monospace; }
+figure { margin-top: 6mm; break-inside: avoid; }
+figure img { display: block; width: 176mm; max-width: 100%; height: auto; }
+figcaption { margin-top: 2mm; color: #6b7078; font-size: 8.5pt; }
+</style>
+</head>
+<body>
+  <section class="page">
+    <h1>Стратег</h1>
+    <p>Руководителю продукта нужно выбрать следующий шаг, даже когда материалы неполные. «Стратег» сравнивает варианты, показывает основания и отмечает, каких данных для выбора не хватает. Решение остаётся за руководителем.</p>
+    <p>Чтобы попробовать, распакуйте архив проекта и откройте папку в агентной IDE или CLI. Попросите агента прочитать <code>AGENTS.md</code> и продолжить <code>demo/live</code>.</p>
+    <figure>
+      <img src="strateg-demo.png" alt="В окне Codex введена задача проверить, что осталось выяснить перед пилотом Евы">
+      <figcaption>Запрос к Codex на GPT-6 Luna</figcaption>
+    </figure>
+  </section>
+  <section class="page">
+    <h1>Сценарий Евы</h1>
+    <p>В учебном примере руководитель решает, стоит ли проверять, как объяснять пользу Евы людям, которые не могут ответить на звонок во время встречи.</p>
+    <p>Сначала агент предлагает проверить, понимают ли люди описание функции. Затем учебная поправка снимает это предположение. Агент помечает план пилота для пересмотра и не подменяет прежнее объяснение новой догадкой.</p>
+    <p>В записи Codex проверяет этот статус и показывает, что ещё надо выяснить. Спрос и затраты остаются неизвестными. Пилот не запускали.</p>
+    <figure>
+      <img src="../assets/memory.svg" alt="Диаграмма последовательности: руководитель задаёт вопрос, агент читает файлы и запускает проверку, затем возвращает рекомендацию">
+      <figcaption>Как агент проверяет материалы и возвращает варианты руководителю</figcaption>
+    </figure>
+  </section>
+  <section class="page">
+    <h1>Как сделали прототип</h1>
+    <h2>Что хранится в проекте</h2>
+    <p>В <code>brief.md</code> записан вопрос. В <code>state.json</code> хранятся источники, утверждения и связи с решениями. В <code>strategy.md</code> остаются варианты и план проверки. Новый сеанс продолжает работу по этим файлам.</p>
+    <h2>Как проверяются выводы</h2>
+    <p>Локальные скрипты на Python проверяют структуру и связи. При отзыве основания они помечают зависимые записи для пересмотра. Они не проверяют, прав ли источник и подходит ли рекомендация.</p>
+    <h2>Где использовали ИИ</h2>
+    <p>В демо Codex на GPT-6 Luna читает материалы, проверяет статус решения и составляет три пункта для руководителя. Агент не меняет файлы и не принимает решение о пилоте.</p>
+  </section>
+</body>
+</html>

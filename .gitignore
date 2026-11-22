@@ -18,6 +18,7 @@ node_modules/
 .DS_Store
 runs/
 .cache/
+/tmp/
 
 # Временный lock и черновики состояния проекта
 *.lock
